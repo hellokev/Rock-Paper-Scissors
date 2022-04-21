@@ -1,3 +1,7 @@
+/* computerPlay() picks a random number from 0 to 
+length of our "lower array" in this case 3 (0-2)
+and returns the element of the array */
+
 function computerPlay() {
 
     const randNumb = Math.floor(Math.random() * lower.length);
@@ -26,8 +30,20 @@ function playRound(playerSelection, computerSelection) {
         console.log("You won! Rock beats Scissors!");
     } else if (computerSelection == lower[2] && playerSelection == lower[1]) {
         console.log("You lost! Scissors beats Paper");
+    } else if (playerSelection != lower[0] || lower[1] || lower[2]) {
+        console.log("Error! Selection does not exist!");
     }
     
+}
+
+/* game() initiates the game for 5 iterations */
+
+function game() {
+    for(i = 0; i < 5; i++) {
+        const computerSelection = computerPlay(lower);
+        let playerSelection = prompt("Type Rock, Paper, or Scissors: ");
+        playRound(playerSelection.toLowerCase(), computerSelection);
+    }
 }
 
 const choose = ["Rock", "Paper", "Scissors"];
@@ -45,6 +61,5 @@ for (let i = 0; i < choose.length; i++) {
     lower[i] = choose[i].toLowerCase();
 }
 
-const computerSelection = computerPlay(lower);
-let playerSelection = prompt("Type Rock, Paper, or Scissors: ");
-playRound(playerSelection.toLowerCase(), computerSelection);
+game();
+
