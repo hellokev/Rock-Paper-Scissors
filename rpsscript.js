@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 /* computerPlay() picks a random number from 0 to 
 length of our "lower array" in this case 3 (0-2)
 and returns the element of the array */
@@ -15,36 +18,102 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+    let lineBreak = document.createElement('br');
+    results.appendChild(lineBreak);
 
     if (playerSelection == computerSelection) {
-        console.log("Tie! You both picked " + playerSelection);
+        results.innerHTML = `Tie! You both picked ${playerSelection}. ${document.write('</br>')} Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[0] && playerSelection == lower[1]) {
-        console.log("You won! Paper beats Rock!");
+        playerScore++;
+        results.innerHTML = `You won! Paper beats Rock! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[0] && playerSelection == lower[2]) {
-        console.log("You lost! Rock beats Paper!");
+        computerScore++;
+        results.innerHTML = `You lost! Rock beats Scissors! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[1] && playerSelection == lower[0]) {
-        console.log("You lost! Paper beats Rock!");
+        computerScore++;
+        results.innerHTML = `You lost! Paper beats Rock! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[1] && playerSelection == lower[2]) {
-        console.log("You won! Scissors beats Paper!");
+        playerScore++;
+        results.innerHTML = `You won! Scissors beats Paper! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[2] && playerSelection == lower[0]) {
-        console.log("You won! Rock beats Scissors!");
+        playerScore++;
+        results.innerHTML = `You won! Rock beats Scissors! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (computerSelection == lower[2] && playerSelection == lower[1]) {
-        console.log("You lost! Scissors beats Paper");
+        computerScore++;
+        results.innerHTML = `You lost! Scissors beats Paper! Score: Player:${playerScore} | Computer: ${computerScore}.`;
     } else if (playerSelection != lower[0] || lower[1] || lower[2]) {
-        console.log("Error! Selection does not exist!");
+        results.innerHTML = "Error! Selection does not exist!";
     }
-    
+    document.body.appendChild(results);
+    score(playerScore, computerScore);
+
 }
 
 /* game() initiates the game for 5 iterations */
 
-function game() {
-    for(i = 0; i < 5; i++) {
-        const computerSelection = computerPlay(lower);
-        let playerSelection = prompt("Type Rock, Paper, or Scissors: ");
-        playRound(playerSelection.toLowerCase(), computerSelection);
+// function game() {
+//     for(i = 0; i < 5; i++) {
+//         const computerSelection = computerPlay(lower);
+//         let playerSelection = prompt("Type Rock, Paper, or Scissors: ");
+//         playRound(playerSelection.toLowerCase(), computerSelection);
+//     }
+// }
+
+function score() {
+    if (playerScore == 5) {
+        console.log("Congrats, you won in the game of Rock Paper Scissors!");
+        return 0;
+    } else if (computerScore == 5) {
+        console.log("cmon breh you lost!");
+        return 0;
     }
-}
+ }
+
+
+
+const rock = document.createElement('button');
+rock.innerText = 'Rock';
+rock.addEventListener('click', () => {
+    let playerSelection = rock.innerText;
+    const computerSelection = computerPlay(lower);
+    if (playerScore < 5 || computerScore < 5){
+        playRound(playerSelection.toLowerCase(), computerSelection);
+    } else {
+        return;
+    }
+})
+
+const paper = document.createElement('button');
+paper.innerText = 'Paper';
+paper.addEventListener('click', () => {
+    let playerSelection = paper.innerText;
+    const computerSelection = computerPlay(lower);
+    if (playerScore < 5 || computerScore < 5){ 
+        playRound(playerSelection.toLowerCase(), computerSelection);
+    } else {
+        return;
+    }
+})
+
+const scissors = document.createElement('button');
+scissors.innerText = 'Scissors';
+scissors.addEventListener('click', () => {
+    let playerSelection = scissors.innerText;
+    const computerSelection = computerPlay(lower);
+    if (playerScore < 5 || computerScore < 5){ 
+        playRound(playerSelection.toLowerCase(), computerSelection);
+    } else {
+        return;
+    }
+})
+
+
+document.body.appendChild(rock);
+document.body.appendChild(paper);
+document.body.appendChild(scissors);
+
+const br = document.createElement("br");
+const results = document.createElement('div');
 
 const choose = ["Rock", "Paper", "Scissors"];
 
@@ -61,5 +130,5 @@ for (let i = 0; i < choose.length; i++) {
     lower[i] = choose[i].toLowerCase();
 }
 
-game();
+// game();
 
