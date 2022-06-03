@@ -15,7 +15,8 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-
+    results.style.fontSize = "medium";
+    results.style.fontWeight = "normal";
     if (playerSelection == computerSelection) {
         results.textContent = `Tie! You both picked ${playerSelection}. Score: Player:${playerScore} | Computer: ${computerScore}.`;
         results.style.color = "#000000";
@@ -47,21 +48,17 @@ function playRound(playerSelection, computerSelection) {
         results.textContent = "Error! Selection does not exist!";
     }
     if (playerScore == 5) {
-        alert(`Congrats, you won in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. `)
+        results.style.fontSize = "x-large";
+        results.style.fontWeight = "bolder";
+        results.textContent = `Congrats! you won in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. Press any button to play again.`
         playerScore = 0;
         computerScore = 0;
-        if(window.confirm('Press any button to play again!')) {
-        } else {
-            alert("Thank you for playing! Press any button to play or refresh the page!");
-        } 
     } else if (computerScore == 5) {
-        alert(`You lost in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. `)
+        results.style.fontSize = "x-large";
+        results.style.fontWeight = "bolder";
+        results.textContent = `You lost in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. Press any button to play again.`
         playerScore = 0;
         computerScore = 0;
-        if(window.confirm('Press any button to play again!')) {
-        } else {
-            alert("Thank you for playing! Press any button to play or refresh the page!");
-        }
     }
 }
 
@@ -102,7 +99,6 @@ document.body.appendChild(scissors);
 
 divRPS.append(rock, paper, scissors);
 
-const br = document.createElement("br");
 const results = document.createElement('div');
 results.className = "resultsClass";
 results.textContent = `Score: Player: ${playerScore} | Computer: ${computerScore}.`;
@@ -122,51 +118,3 @@ const lower = [];
 for (let i = 0; i < choose.length; i++) {
     lower[i] = choose[i].toLowerCase();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// down below is unused code
-
-/* game() initiates the game for 5 iterations */
-
-// function game() {
-//     for(i = 0; i < 5; i++) {
-//         const computerSelection = computerPlay(lower);
-//         let playerSelection = prompt("Type Rock, Paper, or Scissors: ");
-//         playRound(playerSelection.toLowerCase(), computerSelection);
-//     }
-// }
-
-
-// function score(playerScore, computerScore) {
-//     if (playerScore == 5) {
-//         alert(`Congrats, you won in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. `)
-//         playerScore = 0;
-//         computerScore = 0;
-//         if(window.confirm('Press any button to play again!')) {
-//             rps();
-//         } else {
-//             alert("Thank you for playing! Press any button to play or refresh the page!");
-//             rps();
-//         }
-//     } else if (computerScore == 5) {
-//         alert(`You lost in the game of Rock, Paper Scissors. Score: ${playerScore} | Computer: ${computerScore}. `)
-//         playerScore = 0;
-//         computerScore = 0;
-//         if(window.confirm('Press any button to play again!')) {
-//             rps();
-//         } else {
-//             alert("Thank you for playing! Press any button to play or refresh the page!");
-//         }
-//     }
-//  }
