@@ -15,29 +15,34 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let lineBreak = document.createElement('br');
-    results.appendChild(lineBreak);
 
     if (playerSelection == computerSelection) {
         results.textContent = `Tie! You both picked ${playerSelection}. Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#000000";
     } else if (computerSelection == lower[0] && playerSelection == lower[1]) {
         playerScore++;
-        results.textContent = `You won! Paper beats Rock! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You won! Paper beats Rock! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#00FF00";
     } else if (computerSelection == lower[0] && playerSelection == lower[2]) {
         computerScore++;
-        results.textContent = `You lost! Rock beats Scissors! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You lost! Rock beats Scissors! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#FF0000";
     } else if (computerSelection == lower[1] && playerSelection == lower[0]) {
         computerScore++;
-        results.textContent = `You lost! Paper beats Rock! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You lost! Paper beats Rock! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#FF0000";
     } else if (computerSelection == lower[1] && playerSelection == lower[2]) {
         playerScore++;
-        results.textContent = `You won! Scissors beats Paper! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You won! Scissors beats Paper! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#00FF00";
     } else if (computerSelection == lower[2] && playerSelection == lower[0]) {
         playerScore++;
-        results.textContent = `You won! Rock beats Scissors! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You won! Rock beats Scissors! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#00FF00";
     } else if (computerSelection == lower[2] && playerSelection == lower[1]) {
         computerScore++;
-        results.textContent = `You lost! Scissors beats Paper! Score: Player:${playerScore} | Computer: ${computerScore}.`;
+        results.textContent = `You lost! Scissors beats Paper! Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+        results.style.color = "#FF0000";
     } else if (playerSelection != lower[0] || lower[1] || lower[2]) {
         results.textContent = "Error! Selection does not exist!";
     }
@@ -58,20 +63,21 @@ function playRound(playerSelection, computerSelection) {
             alert("Thank you for playing! Press any button to play or refresh the page!");
         }
     }
-    document.body.appendChild(results);
-
 }
-
-
 
 const rock = document.createElement('button');
 const paper = document.createElement('button');
 const scissors = document.createElement('button');
 const divRPS = document.querySelector('#rpsButton');
+rock.className = "rockClass";
+paper.className = "paperClass";
+scissors.className = "scissorsClass";
 rock.innerText = 'Rock';
 paper.innerText = 'Paper';
 scissors.innerText = 'Scissors';
-    
+
+
+
 rock.addEventListener('click', () => {
     let playerSelection = rock.innerText;
     const computerSelection = computerPlay(lower);
@@ -94,11 +100,14 @@ document.body.appendChild(rock);
 document.body.appendChild(paper);
 document.body.appendChild(scissors);
 
-divRPS.appendChild(button);
+divRPS.append(rock, paper, scissors);
 
 const br = document.createElement("br");
 const results = document.createElement('div');
-
+results.className = "resultsClass";
+results.textContent = `Score: Player: ${playerScore} | Computer: ${computerScore}.`;
+results.style.textAlign = "center";
+document.body.appendChild(results);
 const choose = ["Rock", "Paper", "Scissors"];
 
 /*

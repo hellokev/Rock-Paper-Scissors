@@ -1,9 +1,58 @@
+* {
+    font-family: "Lucida Console", "Courier New", monospace;
+}
 h1 {
     text-align: center;
 }
 #rpsButton {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+}
+
+.rockClass {
+    text-align: center;
+    width: 70px;
+    height: 45px;
+    border-radius: 4px;
+    border: none;
+}
+
+.rockClass:hover {
+    border-radius: 50px;
+    transition: width .7s, border-radius .7s;
+    background-color: #72ecb7;
+}
+
+.paperClass {
+    text-align: center;
+    width: 70px;
+    height: 45px;
+    border-radius: 4px;
+    border: none;
+}
+
+.paperClass:hover {
+    border-radius: 50px;
+    transition: width .7s, border-radius .7s;
+    background-color: #72ecb7;
+}
+
+.scissorsClass {
+    text-align: center;
+    width: 70px;
+    height: 45px;
+    border-radius: 4px;
+    border: none;
+}
+
+.scissorsClass:hover {
+    border-radius: 50px;
+    transition: width .7s, border-radius .7s;
+    background-color: #72ecb7;
+}
+
+div {
+    padding: 5em;
 }
